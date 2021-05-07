@@ -1,0 +1,13 @@
+{% extends 'index.html' %}
+
+
+{% block tittle %} Crear Curso {% endblock tittle %}
+
+
+{% block body %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ curso_form.as_p }}
+        <button type="submit">Crear Curso</button>
+    </form>
+{% endblock body %}

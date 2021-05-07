@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+
+
+{% block title %} Editar Curso {% endblock title %}
+
+
+{% block body %}
+    
+    {% if error %}
+        <p>{{ error }}</p>
+    {% else %}
+        <form method="POST">
+            {% csrf_token %}
+            {{ curso_form.as_p }}
+            <button type="submit">Actualizar</button>
+        </form>
+    {% endif %}
+        
+{% endblock body %}
+    
