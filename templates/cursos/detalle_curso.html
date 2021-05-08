@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+
+{% block title %} Detalles del Curso {% endblock title %} 
+
+{% block body %}
+<h2>{{ curso.titulo }}</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Titulo</th>
+      <th scope="col">Descripción</th>
+      <th scope="col">Temas</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for clase in clases %}
+    <tr>
+      <th scope="row">{{ clase.id }}</th>
+      <td>{{ clase.titulo }}</td>
+      <td>{{ clase.descripcion }}</td>
+      <td>
+        <ol>
+        {% for tema in temas %}
+        
+        {% if tema.clase.id == clase.id %}
+          <li>
+            <a href="{{ tema.url_video }}">{{ tema.titulo }} {{ tema.id }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+        </ol>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock body %}

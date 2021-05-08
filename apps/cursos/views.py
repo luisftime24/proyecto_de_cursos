@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.core.exceptions import ObjectDoesNotExist
 # Se importan los modelos y formularios
 
-from .models import Clases, Curso, Alumno, Profesor
+from .models import Clases, Curso, Alumno, Profesor, Temas
 from .forms import ProfesorForm, ClasesForm, AlumnoForm, CursoForm
 
 # Create your views here.
@@ -47,3 +47,14 @@ def eliminarCurso(request, id):
         curso.delete()
         return redirect('/cursos/listar_cursos')
     return render(request, 'cursos/eliminar_curso.html', {'curso': curso})
+
+
+def verCurso(request, id):
+    curso = Curso.objects.get(id=id)
+    clases = Clases.objects.filter(curso=curso)
+    temas = []
+    for clase in clases:
+        tema = Temas.objects.filter(clase=clases)
+        print("HOLAAAAA")
+        print(tema)
+    return render(request, 'cursos/detalle_curso.html', {'curso': curso, 'clases': clases, 'temas': temas})

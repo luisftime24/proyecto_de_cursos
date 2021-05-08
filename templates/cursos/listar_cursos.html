@@ -27,6 +27,7 @@
         <td>{{ curso.fecha_termino }}</td>
         <td><a class="btn btn-warning" href="{% url 'cursos:editar_curso' curso.id %}">Editar</a>
             <a class="btn btn-danger" href="{% url 'cursos:eliminar_curso' curso.id %}">Eliminar</a>
+            <a class="btn btn-success" href="{% url 'cursos:detalle_curso' curso.id %}">Ver</a>
         </td>
       </tr>
     {% endfor %}
